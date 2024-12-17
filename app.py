@@ -372,7 +372,7 @@ def get_openai_client():
     #local deploy
     #return OpenAI(api_key=env["OPENAI_API_KEY"])
     #streamlit deploy
-    return OpenAI(api_key=env['OPENAI_API_KEY'])
+    return OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
 
 def get_embedding_ai(text):
     openai_client = get_openai_client()
