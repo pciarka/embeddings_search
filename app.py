@@ -26,7 +26,10 @@ from openai import OpenAI
 #streamlit deploy
 env = dotenv_values(".env")
 # key=st.session_state.get("OPENAI_API_KEY")
-key=st.secrets["OPENAI_API_KEY"]
+if 'OPENAI_API_KEY' in st.secrets:
+    env['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
+
+# key=st.secrets["OPENAI_API_KEY"]
 ### Secrets using Streamlit Cloud Mechanism
 # https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management
 if 'QDRANT_URL' in st.secrets:
@@ -369,7 +372,7 @@ def get_openai_client():
     #local deploy
     #return OpenAI(api_key=env["OPENAI_API_KEY"])
     #streamlit deploy
-    return OpenAI(api_key=key)
+    return OpenAI(api_key=env['OPENAI_API_KEY'])
 
 def get_embedding_ai(text):
     openai_client = get_openai_client()
