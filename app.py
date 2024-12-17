@@ -25,7 +25,8 @@ from openai import OpenAI
 
 #streamlit deploy
 env = dotenv_values(".env")
-key=st.session_state.get("OPENAI_API_KEY")
+# key=st.session_state.get("OPENAI_API_KEY")
+key=st.secrets["OPENAI_API_KEY"]
 ### Secrets using Streamlit Cloud Mechanism
 # https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management
 if 'QDRANT_URL' in st.secrets:
@@ -492,6 +493,9 @@ def get_collection_info(collection_name):
         return None
 
 def main():
+    
+
+
     st.title("Text & Embeddings searching")
     
     # Zakładki
